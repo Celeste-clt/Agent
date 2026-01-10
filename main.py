@@ -1,20 +1,23 @@
-from musique import jouer_musique
+from music import jouer_musique
 from add import creer_fichier, modifier_fichier, supprimer_fichier
+from agenda import ajouter_evenement
 import os
+
 
 def analyser_phrase(phrase):
     phrase = phrase.lower()
 
-    # music
+    # musique
     if "joue" in phrase or "musique" in phrase:
         fichier = input("Quel fichier audio ? (ex: travis.mp3) : ")
         chemin = os.path.join("musique", fichier)
         jouer_musique(chemin)
 
     # file
-    elif "crée" in phrase or "creer" in phrase:
+    elif "crée" in phrase or "creer" in phrase or "fichier" in phrase or "ajoute" in phrase:
         nom = input("Nom du fichier à créer (ex: test.txt) : ")
         creer_fichier(nom)
+
 
     # edit
     elif "modifie" in phrase or "modifier" in phrase:
@@ -22,9 +25,20 @@ def analyser_phrase(phrase):
         modifier_fichier(nom)
 
     # delete
-    elif "supprime" in phrase or "supprimer" in phrase:
+    elif "supprime" in phrase or "supprimer" in phrase or "supprime" in phrase:
         nom = input("Nom du fichier à supprimer : ")
         supprimer_fichier(nom)
+
+
+            
+    elif "événement" in phrase or "evenement" in phrase or "calendrier" in phrase:
+        date = input("Date de l'événement (JJ/MM/AAAA) : ")
+        lieu = input("Lieu : ")
+        titre = input("Titre : ")
+
+        ajouter_evenement(date, lieu, titre) 
+
+
 
     # quit
     elif "quit" in phrase or "quitte" in phrase:
@@ -38,13 +52,11 @@ def analyser_phrase(phrase):
 
 
 def main():
-    print("Agent lancé. Je t'écoute !")
+    print("🤖 Agent lancé. Je t'écoute !")
 
     while True:
         phrase = input("> ")
-
-        continuer = analyser_phrase(phrase)
-        if not continuer:
+        if not analyser_phrase(phrase):
             break
 
 
