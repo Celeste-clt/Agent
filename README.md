@@ -11,7 +11,7 @@
 - Ajouter des événements dans un calendrier
 - Simuler l’envoi de mails en enregistrant les informations dans un fichier JSON
 
-L’utilisateur interagit avec l’agent en **langage avec des phrases ou des mots-clés**.
+Cet agent utilise LLaMA local pour répondre aux attentes de l'utilisateur
 
 # Installation et structure
 
@@ -37,9 +37,29 @@ Agent/
 
 python3 main.py
 
-# Musique
+# Installation
 
-**Mots clés**
+```
+pip install -r requirements.txt
+```
+
+## Installer llama
+
+```
+brew install llama.cpp
+```
+
+## Lancer le serveur
+
+```
+llama-server -hf bartowski/Llama-3.2-3B-Instruct-GGUF:Q8_0
+```
+
+```
+Port : http://127.0.0.1:8080
+```
+
+# Musique
 
 ```
 > musique - joue
@@ -52,8 +72,6 @@ _Important_ titre de la musique : Travis-Scott
 # Fichier
 
 ## creation
-
-**Mots clés**
 
 ```
 > crée un fichier - creer - fichier
@@ -101,6 +119,17 @@ _Important_ mettre la date en entier comme ceci : (JJ/MM/AAAA)
 # Mail
 
 Mail ajouté dans mails.json
+
+```
+Option à chosir :
+Que veux-tu faire avec les mails ?
+1. Créer un mail
+2. Compter les mails
+3. Lister les mails
+4. Lire un mail
+5. Supprimer un mail
+Choix (1-5) :
+```
 
 ```
 > envoie un mail
